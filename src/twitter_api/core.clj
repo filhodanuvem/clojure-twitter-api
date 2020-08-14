@@ -5,18 +5,23 @@
             [ring.middleware.defaults :refer :all]
             [clojure.pprint :as pp]
             [clojure.string :as str]
-            [clojure.data.json :as json])
+            [clojure.data.json :as json]
+            [twitter-api.tweets.validation :as v])
   (:gen-class))
 
-(defn hello-world
+(defn add-tweets
   "index route"
   [req]
-  {:status  200
-   :headers {"Content-Type" "text/html"}
-   :body    "Hello World"})
+  (let [is-valid (v/validate-tweet req)]
+    {:status  (if (true? is-valid) 200 400)
+     :headers {"Content-Type" "text/html"}
+     :body    (if
+                (true? is-valid)
+                "salvou"
+                nil)}))
 
 (defroutes app-routes
-           (GET "/" [] hello-world))
+           (POST "/tweets" [] add-tweets))
 
 (defn -main
   "I don't do a whole lot ... yet."
