@@ -1,3 +1,7 @@
 POST http://localhost:3000/tweets
+Content-Type: application/json
 
-{"body" : "test"}
+{
+  "body": "test",
+  "username" : "@filhodanuvem"
+}

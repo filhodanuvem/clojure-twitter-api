@@ -10,6 +10,7 @@
                  [http-kit "2.3.0"]
                  ; Ring defaults - for query params etc
                  [ring/ring-defaults "0.3.2"]
+                 [ring/ring-json "0.5.0"]
                  ; Clojure data.JSON library
                  [org.clojure/data.json "0.2.6"]]
   :main ^:skip-aot twitter-api.core
