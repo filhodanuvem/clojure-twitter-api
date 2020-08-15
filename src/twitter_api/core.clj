@@ -4,15 +4,12 @@
             [compojure.route :as route]
             [ring.middleware.defaults :refer :all]
             [ring.middleware.json :as ring-mid-json]
-            [ring.util.response :as ring-util-response]
             [clojure.pprint :as pp]
             [clojure.string :as str]
             [clojure.data.json :as json]
             [twitter-api.tweets.validation :as v])
   (:gen-class))
 
-(use '[ring.middleware.json :only [wrap-json-body]]
-     '[ring.util.response :only [response]])
 
 (defn add-tweets
   "index route"
@@ -24,9 +21,9 @@
      :body    (if
                 (true? is-valid)
                 "salvou"
-                nil)}))
+                "nao salvou")}))
 (defroutes app
-           (wrap-json-body (POST "/tweets" [] add-tweets)))
+           (ring-mid-json/wrap-json-body (POST "/tweets" [] add-tweets)))
 
 (defn -main
   "I don't do a whole lot ... yet."
