@@ -10,6 +10,8 @@
                  [http-kit "2.3.0"]
                  [ring/ring-defaults "0.3.2"]
                  [ring/ring-json "0.5.0"]
+                 [org.clojure/tools.logging "0.2.3"]
+                 [log4j/log4j "1.2.16"]
                  [org.clojure/data.json "0.2.6"]]
   :main ^:skip-aot twitter-api.core
   :target-path "target/%s"
