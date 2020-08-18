@@ -4,13 +4,13 @@
 
 (deftest validation-test
   (testing "Should be valid"
-    (is (true? (validate-tweet {"body" "this is my frist tweet"
-                     "username"  "@filhodanuvem"}))))
+    (is (true? (validate-tweet {:body "this is my frist tweet"
+                     :username  "@filhodanuvem"}))))
 
   (testing "Should fail when there is no body"
-    (is (false? (validate-tweet {"body" ""
-                     "username"  "@filhodanuvem"}))))
+    (is (false? (validate-tweet {:body ""
+                     :username  "@filhodanuvem"}))))
 
   (testing "Should fail when there is no username"
-    (is (false? (validate-tweet {"body" "this is my first tweet"
-                                 "username"  ""})))))
+    (is (false? (validate-tweet {:body "this is my first tweet"
+                                 :username  ""})))))
