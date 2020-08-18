@@ -7,23 +7,22 @@
             [clojure.pprint :as pp]
             [clojure.string :as str]
             [clojure.data.json :as json]
-            [twitter-api.tweets.validation :as v])
+            [twitter-api.tweets.database :as d])
   (:gen-class))
 
 
 (defn add-tweets
   "index route"
   [req]
-  (let [is-valid
-        (v/validate-tweet (:body req))]
-    {:status  (if (true? is-valid) 200 400)
+  (let [saved (d/post-tweet (:body req))]
+    {:status  (if (true? saved) 200 400)
      :headers {"Content-Type" "text/html"}
      :body    (if
-                (true? is-valid)
+                (true? saved)
                 "salvou"
                 "nao salvou")}))
 (defroutes app
-           (ring-mid-json/wrap-json-body (POST "/tweets" [] add-tweets)))
+             (ring-mid-json/wrap-json-body (POST "/tweets" [] add-tweets) {:keywords? true :bigdecimals? true}))
 
 (defn -main
   "I don't do a whole lot ... yet."
