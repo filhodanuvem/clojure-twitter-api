@@ -12,6 +12,7 @@
                  [ring/ring-json "0.5.0"]
                  [org.clojure/tools.logging "0.2.3"]
                  [log4j/log4j "1.2.16"]
+                 [funcool/clojure.jdbc "0.9.0"]
                  [org.clojure/data.json "0.2.6"]]
   :main ^:skip-aot twitter-api.core
   :target-path "target/%s"

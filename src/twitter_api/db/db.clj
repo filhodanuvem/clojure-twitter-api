@@ -9,6 +9,6 @@
    :user "postgres"
    :password ""})
 
-(hugsql/def-db-fns "twitter_api/db/sql/insert_tweet.sql")
-;(hugsql/def-sqlvec-fns "twitter_api/db/sql/insert_tweet.sql")
+(hugsql/def-db-fns "twitter_api/db/sql/queries.sql")
+(hugsql/def-sqlvec-fns "twitter_api/db/sql/queries.sql")
 
