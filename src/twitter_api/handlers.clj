@@ -20,15 +20,20 @@
                       (log/error e)
                       false)))]
       (log/info tweet-json)
-      {:status  (if (true? saved) 200 400)
+      {:status  (if saved 201 400)
       :headers {"Content-Type" "text/html"}
-      :body    (when (false? saved)
+      :body    (when (not saved)
                   "error or saving tweet")}))
 
 (defn get-twitter-handler
-  [{{:keys [username]} :params}]
+  [req]
+    (log/info req)
     (let
-      [tweets (d/search-tweets-by-username username)]
+      [username (-> req
+                  :params
+                  :username)
+      tweets (d/search-tweets-by-username username)]
+    
       {:status 200
       :headers {"Content-type" "application/json"}
       :body tweets}))

@@ -16,4 +16,8 @@ services:
     ports: 
       - 3000:3000
 
+  unit-tests:
+    build: .
+    command: lein test 
+    
     
