@@ -12,30 +12,30 @@
 
 (defn post-twitter-handler
   [req]
-    (let [tweet-json (:body req)
-          saved (try
-                  (d/post-tweet tweet-json)
-                  (catch Exception e
-                    (do
-                      (log/error e)
-                      false)))]
-      (log/info tweet-json)
-      {:status  (if saved 201 400)
-      :headers {"Content-Type" "text/html"}
-      :body    (when (not saved)
-                  "error or saving tweet")}))
+  (let [tweet-json (:body req)
+        saved (try
+                (d/post-tweet tweet-json)
+                (catch Exception e
+                  (do
+                    (log/error e)
+                    false)))]
+    (log/info tweet-json)
+    {:status  (if saved 201 400)
+     :headers {"Content-Type" "text/html"}
+     :body    (when (not saved)
+                "error or saving tweet")}))
 
 (defn get-twitter-handler
   [req]
-    (log/info req)
-    (let
-      [username (-> req
-                  :params
-                  :username)
-      _  (println " The username is " username)
-      tweets (d/search-tweets-by-username username)
-      _ (println tweets)]
+  (log/info req)
+  (let
+   [username (-> req
+                 :params
+                 :username)
+    _  (println " The username is " username)
+    tweets (d/search-tweets-by-username username)
+    _ (println tweets)]
 
-      {:status 200
-      :headers {"Content-type" "application/json"}
-      :body tweets}))
+    {:status 200
+     :headers {"Content-type" "application/json"}
+     :body (json/write-str tweets)}))

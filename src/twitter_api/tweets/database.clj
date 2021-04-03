@@ -17,6 +17,6 @@
   "Find tweets from a specific username"
   [username]
   (let [result (sql-search-tweets-by-username db {:username (str "@" username)})]
-    result))
+    (map #(assoc % :id (str (:id %))) result)))
 
     ; (map #(.getValue (:row %)) result)

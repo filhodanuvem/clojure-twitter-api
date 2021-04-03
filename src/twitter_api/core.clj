@@ -12,7 +12,7 @@
             [twitter-api.tweets.database :as d])
   (:gen-class))
 
-(defroutes app-routes        
+(defroutes app-routes
   (POST "/tweets" [] (mj/wrap-json-body post-twitter-handler {:keywords? true :bigdecimals? true}))
   (GET "/tweets" [] get-twitter-handler))
 
@@ -21,4 +21,4 @@
   [& args]
   (let [port 3000]
     (server/run-server  (wrap-defaults #'app-routes api-defaults)  {:port port})
-    (println (str "Running service on port " port ))))
+    (println (str "Running service on port " port))))
