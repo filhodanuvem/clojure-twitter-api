@@ -8,8 +8,7 @@
 (defn post-tweet
   "Post a tweet to the audience"
   [tweet]
-  (let [_  (println tweet)
-        is-valid (v/validate-tweet tweet)]
+  (let [is-valid (v/validate-tweet tweet)]
     (when is-valid
       (sql-insert-tweet db (assoc tweet :id (java.util.UUID/randomUUID))))))
 
@@ -18,5 +17,3 @@
   [username]
   (let [result (sql-search-tweets-by-username db {:username (str "@" username)})]
     (map #(assoc % :id (str (:id %))) result)))
-
-    ; (map #(.getValue (:row %)) result)

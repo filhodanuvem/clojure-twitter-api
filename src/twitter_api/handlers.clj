@@ -32,9 +32,7 @@
    [username (-> req
                  :params
                  :username)
-    _  (println " The username is " username)
-    tweets (d/search-tweets-by-username username)
-    _ (println tweets)]
+    tweets (d/search-tweets-by-username username)]
 
     {:status 200
      :headers {"Content-type" "application/json"}

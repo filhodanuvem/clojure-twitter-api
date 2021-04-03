@@ -4,8 +4,8 @@
             [clojure.data.json :as json])
   (:gen-class))
 
-(def minimum-body-length 1)
-(def maximum-body-length 140)
+(defn- minimum-body-length 1)
+(defn- maximum-body-length 140)
 
 (defn validate-tweet
   "validate if a tweet has all the required data"

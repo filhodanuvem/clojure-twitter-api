@@ -17,7 +17,10 @@ services:
       - 3000:3000
 
   unit-tests:
-    build: .
+    image: clojure:openjdk-17-lein 
     command: lein test 
+    volumes: 
+      - .:/tmp
+
     
     
