@@ -5,6 +5,7 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [com.layerware/hugsql "0.5.1"]
+                 [com.layerware/hugsql-adapter-next-jdbc "0.5.1"]
                  [org.postgresql/postgresql "42.2.2"]
                  [compojure "1.6.1"]
                  [http-kit "2.3.0"]
