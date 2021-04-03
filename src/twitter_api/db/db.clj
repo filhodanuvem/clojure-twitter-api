@@ -3,9 +3,9 @@
   (:gen-class))
 
 (def db
-  {:subprotocol "postgres"
+  {:subname "//db:5432/postgres"
+   :subprotocol "postgres"
    :dbtype "postgres"
-   :dbname "twitter"
    :user "postgres"
    :password "twitter"})
 

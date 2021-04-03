@@ -12,15 +12,23 @@
 
 (defn post-twitter-handler
   [req]
-  (log/info req)
-    (let [saved (try
-                  (d/post-tweet (:body req))
+    (let [tweet-json (:body req)
+          saved (try
+                  (d/post-tweet tweet-json)
                   (catch Exception e
                     (do
-                      (log/error (.getMessage e))
+                      (log/error e)
                       false)))]
+      (log/info tweet-json)
       {:status  (if (true? saved) 200 400)
       :headers {"Content-Type" "text/html"}
-      :body    (if
-                  (false? saved)
+      :body    (when (false? saved)
                   "error or saving tweet")}))
+
+(defn get-twitter-handler
+  [{{:keys [username]} :params}]
+    (let
+      [tweets (d/search-tweets-by-username username)]
+      {:status 200
+      :headers {"Content-type" "application/json"}
+      :body tweets}))

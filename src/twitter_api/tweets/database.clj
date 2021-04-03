@@ -2,15 +2,16 @@
   (:require [twitter-api.db.db :refer :all]
             [cheshire.core :as json]
             [twitter-api.tweets.validation :as v])
+  (:import java.util.UUID)
   (:gen-class))
 
 (defn post-tweet
   "Post a tweet to the audience"
   [tweet]
-  (let [is-valid (v/validate-tweet tweet)]
-    (if is-valid
-      (sql-insert-tweet db tweet)
-      (println "tweet is not valid!" tweet))))
+  (let [_  (println tweet)
+        is-valid (v/validate-tweet tweet)]
+    (when is-valid
+      (sql-insert-tweet db (assoc tweet :id (java.util.UUID/randomUUID))))))
 
 (defn search-tweets-by-username
   "Find tweets from a specific username"

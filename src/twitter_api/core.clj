@@ -3,6 +3,7 @@
             [compojure.core :refer :all]
             [compojure.route :as route]
             [ring.middleware.defaults :refer :all]
+            [ring.middleware.json :as mj]
             [clojure.pprint :as pp]
             [clojure.string :as str]
             [clojure.data.json :as json]
@@ -12,14 +13,8 @@
   (:gen-class))
 
 (defroutes app-routes        
-  (POST "/tweets" [] post-twitter-handler)
-
-  (GET "/tweets/:username" {{:keys [username]} :params}
-    (let
-      [tweets (d/search-tweets-by-username username)]
-      {:status 200
-      :headers {"Content-type" "application/json"}
-      :body tweets})))
+  (POST "/tweets" [] (mj/wrap-json-body post-twitter-handler {:keywords? true :bigdecimals? true}))
+  (GET "/tweets/:username" [] get-twitter-handler))
 
 (defn -main
   "I don't do a whole lot ... yet."

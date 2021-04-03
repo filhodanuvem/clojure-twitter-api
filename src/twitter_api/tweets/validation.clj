@@ -11,7 +11,8 @@
   "validate if a tweet has all the required data"
   [tweet]
   (and
-    (<= minimum-body-length (count (:body tweet)) maximum-body-length)
+    (not (empty? tweet))
+    ; (<= minimum-body-length (count (:body tweet)) maximum-body-length)
     (= 0 (str/index-of (:username tweet) "@"))
-    (> (count (:username tweet)) 2)
+    ; (> (count (:username tweet)) 2)
     ))
