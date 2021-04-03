@@ -1,0 +1,17 @@
+version: "3"
+services: 
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "twitter"
+    ports: 
+      - 5432:5432
+  app:
+    build: .
+    depends_on: 
+      - db
+    ports: 
+      - 3000:3000
+
+    

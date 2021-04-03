@@ -7,7 +7,7 @@
    :dbtype "postgres"
    :dbname "twitter"
    :user "postgres"
-   :password ""})
+   :password "twitter"})
 
 (hugsql/def-db-fns "twitter_api/db/sql/queries.sql")
 (hugsql/def-sqlvec-fns "twitter_api/db/sql/queries.sql")

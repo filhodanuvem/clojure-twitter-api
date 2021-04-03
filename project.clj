@@ -15,6 +15,7 @@
                  [funcool/clojure.jdbc "0.9.0"]
                  [org.clojure/data.json "0.2.6"]]
   :main ^:skip-aot twitter-api.core
+  :uberjar-name "clojure-twitter-api"
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})

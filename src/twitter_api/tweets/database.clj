@@ -8,10 +8,9 @@
   "Post a tweet to the audience"
   [tweet]
   (let [is-valid (v/validate-tweet tweet)]
-    (if (true? is-valid)
-      (do
-        (sql-insert-tweet db tweet)
-        true))))
+    (if is-valid
+      (sql-insert-tweet db tweet)
+      (println "tweet is not valid!" tweet))))
 
 (defn search-tweets-by-username
   "Find tweets from a specific username"
